@@ -8,7 +8,8 @@
 > **⚡ Bot multifuncional para WhatsApp desenvolvido em Node.js para automatizar e gerenciar as atividades do clã RECRUTA ZERO《☆》 no Clash Royale**
 
 <p align="center">
-  <img src="https://via.placeholder.com/400x200/4A90E2/FFFFFF?text=RECRUTA+ZERO+Bot" alt="Demonstração do Bot" width="400"/>
+  <strong>🤖 Bot WhatsApp para Gerenciamento de Clã Clash Royale</strong><br>
+  <em>Sistema completo de pontos de guerra, ranking e administração</em>
 </p>
 
 ---
