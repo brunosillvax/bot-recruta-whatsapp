@@ -508,8 +508,8 @@ copies or substantial portions of the Software.
 
 ### 🏆 **Desenvolvido para o Clã RECRUTA ZERO《☆》**
 
-- **📧 Contato:** [GitHub Issues](https://github.com/brunosillvax/bot-recruta-whatsapp-atual/issues)
-- **🔗 Repositório:** [GitHub](https://github.com/brunosillvax/bot-recruta-whatsapp-atual)
+- **📧 Contato:** [GitHub Issues](https://github.com/brunosillvax/bot-recruta-whatsapp/issues)
+- **🔗 Repositório:** [GitHub](https://github.com/brunosillvax/bot-recruta-whatsapp)
 - **📱 WhatsApp:** Clã RECRUTA ZERO《☆》
 
 ### 🆘 **Suporte Técnico**
