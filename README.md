@@ -1,565 +1,317 @@
-# 🤖 Bot de WhatsApp RECRUTA ZERO《☆》
+# 🤖 Bot de WhatsApp para o Clã RECRUTA ZERO《☆》
 
-![Node.js](https://img.shields.io/badge/Node.js-18.x-339933?style=for-the-badge&logo=node.js)
-![Baileys](https://img.shields.io/badge/Baileys-7.0.0-green?style=for-the-badge)
-![Firebase](https://img.shields.io/badge/Firebase-FF6B6B?style=for-the-badge&logo=firebase)
+![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?style=for-the-badge&logo=node.js)
+![Baileys](https://img.shields.io/badge/Baileys-7.0.0--rc.6-green?style=for-the-badge)
 ![Licença](https://img.shields.io/badge/Licença-MIT-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Produção-brightgreen?style=for-the-badge)
 
-> **⚡ Bot multifuncional para WhatsApp desenvolvido em Node.js para automatizar e gerenciar as atividades do clã RECRUTA ZERO《☆》 no Clash Royale**
+Um bot multifuncional para WhatsApp desenvolvido em Node.js para automatizar e gerenciar as atividades do nosso clã de Clash Royale, o **RECRUTA ZERO《☆》**. O objetivo é facilitar o registro de pontos de guerra, integrar novos membros e muito mais!
+
+## 🚀 Características Principais
+
+- ✅ **Alta Performance:** Sistema de cache inteligente reduz latência em até 70%
+- ✅ **Alta Confiabilidade:** Retry automático, circuit breaker e health checks
+- ✅ **Escalável:** Preparado para até 300 membros ativos sem modificações
+- ✅ **Resiliente:** Recuperação automática de falhas transitórias
+- ✅ **Monitoramento:** Health checks periódicos e alertas automáticos
 
 <p align="center">
-  <strong>🤖 Bot WhatsApp para Gerenciamento de Clã Clash Royale</strong><br>
-  <em>Sistema completo de pontos de guerra, ranking e administração</em>
+  <img src="URL_DA_SUA_IMAGEM_AQUI.png" alt="Demonstração do Bot" width="300"/>
 </p>
 
 ---
 
 ## ✨ Funcionalidades Principais
 
-### 🎯 **Sistema de Pontos de Guerra**
-- **📝 Registro de Pontos:** Comando `/lista` para fluxo interativo ou atalho `/[pontos] [dia]`
-- **⚡ Atalho Rápido `!!!`:** Lança automaticamente pontos navais salvos
-- **💾 Presets de Usuário:** Salve seu nick e pontos navais com `/save`
-- **🕐 Janela de Tolerância:** Permite registrar pontos do dia atual e anterior até 06:00
-
-### 👥 **Gerenciamento de Jogadores**
-- **📋 Cadastro Automático:** Novos membros recebem boas-vindas e são cadastrados
-- **✏️ Edição de Nomes:** Usuários podem editar próprios nomes, admins podem editar outros
-- **⚠️ Sistema de Punições:** Comandos `/punir`, `/adv` e `/remover` para gestão
-- **🔍 Verificação de Membros:** Comando `/verificar` para sincronizar grupo e bot
-
-### 📊 **Relatórios e Estatísticas**
-- **🏆 Ranking por Divisões:** Elite, Alto Desempenho, Em Dia, Zona de Atenção
-- **📈 Status Detalhado:** Visualização de pontos de guerra e defesa naval
-- **👑 Hall da Fama:** Maiores campeões da semana
-- **📋 Lembretes Inteligentes:** Quem ainda não pontuou em cada dia
-
-### 🛡️ **Sistema de Administração**
-- **🔄 Nova Guerra:** Calcula campeão, aplica faltas e zera pontos
-- **💾 Backup Automático:** Sistema de backup e restauração
-- **⚙️ Reset de Advertências:** Comando para zerar advertências
-- **📱 Notificações Discord:** QR Code e alertas enviados automaticamente
+* **Registro de Pontos de Guerra:** Os membros podem registrar seus pontos da guerra de forma simples com o comando `/lista` (que inicia um fluxo de conversa) ou através do comando rápido `/[pontos] [dia]`.
+* **Gerenciamento de Presets:** Os usuários podem salvar seu nick e pontos navais padrão usando o comando `/save`, permitindo um lançamento rápido de pontos com o atalho `!!!`.
+* **Atalho Rápido `!!!`:** Permite que os usuários lancem automaticamente seus pontos navais salvos, ou inicia um fluxo de conversa para registrar um preset se nenhum existir.
+* **Gestão de Nomes de Jogadores:** Administradores podem usar o comando `/edit [nome_antigo] para [novo_nome]` para renomear jogadores. Usuários podem usar `/edit [novo_nome]` para renomear a si próprios.
+* **Sistema de Punições/Advertências:** Comandos `/punir`, `/adv` e `/remover` permitem que administradores gerenciem advertências e remoções de jogadores, com notificações detalhadas.
+* **Roteamento de Comandos Dinâmico:** Novas funcionalidades e comandos podem ser facilmente adicionados ao bot sem a necessidade de modificar um arquivo central de roteamento.
+* **Sistema de Logging Robusto:** Logs detalhados (info, warn, error, debug) são gerados para facilitar o monitoramento e a depuração do bot.
+* **Janela de Tolerância Inteligente:** O bot só permite registrar pontos do dia atual e do dia anterior, com um prazo final sempre às **06:00 da manhã**.
+* **Boas-Vindas Automáticas:** Novos membros que entram no grupo recebem uma mensagem de boas-vindas e são instruídos a registrar seu nick do jogo.
+* **Gerenciamento de Sessão:** Conversas individuais expiram após um tempo de inatividade para não travar o bot.
+* **Notificação de QR Code:** Envia o QR Code de conexão diretamente para um canal do Discord via Webhook, facilitando a reconexão.
 
 ---
 
-## 🏗️ Arquitetura e Tecnologias
+## 🔧 Tecnologias Utilizadas
 
-### 🛠️ **Stack Tecnológico**
+### Core
+* **[Node.js](https://nodejs.org/)** (>=20.0.0): Ambiente de execução do JavaScript no servidor.
+* **[Baileys](https://github.com/WhiskeySockets/Baileys)** (7.0.0-rc.6): Biblioteca principal para conexão com o WhatsApp.
+* **[Firebase Admin SDK](https://firebase.google.com/docs/admin/setup)**: Para interação segura com o Firebase Firestore.
 
-| Tecnologia | Versão | Propósito |
-|------------|--------|-----------|
-| **Node.js** | 18.x+ | Runtime JavaScript |
-| **Baileys** | 7.0.0 | Conexão WhatsApp |
-| **Firebase Admin** | 13.5.0 | Banco de dados |
-| **Axios** | 1.7.2 | Requisições HTTP |
-| **Pino** | 9.12.0 | Sistema de logs |
-| **QRCode** | 1.5.3 | Geração de QR |
+### Performance & Confiabilidade
+* **Sistema de Cache Avançado:** Cache em memória com TTL configurável, reduzindo chamadas ao Firebase em até 70%.
+* **Retry com Backoff Exponencial:** Recuperação automática de falhas transitórias.
+* **Circuit Breaker:** Proteção contra falhas em cascata.
+* **Message Throttling:** Rate limiting inteligente para prevenir bloqueios do WhatsApp.
+* **Health Check:** Monitoramento periódico com alertas automáticos.
 
-### 📁 **Estrutura do Projeto**
-
-```
-📦 bot-recruta-whatsapp/
-├── 🤖 index.js                 # Arquivo principal
-├── ⚙️ config.js                # Configurações centralizadas
-├── 📝 package.json             # Dependências
-├── 🔧 commands/                # Comandos do bot
-│   ├── 📊 ranking.js           # Ranking por divisões
-│   ├── 📈 status.js            # Status de pontos
-│   ├── 📝 lista.js             # Fluxo de lançamento
-│   ├── 👤 me.js                # Status pessoal
-│   ├── ✏️ edit.js               # Edição de nomes
-│   ├── ⚠️ punir.js              # Sistema de punições
-│   └── ... (19 comandos total)
-├── 🛠️ utils/                   # Utilitários avançados
-│   ├── ⚡ cacheManager.js      # Sistema de cache
-│   ├── 🔄 retryHelper.js        # Retry com backoff
-│   ├── 🛡️ circuitBreaker.js    # Proteção contra falhas
-│   ├── 📨 messageThrottler.js   # Controle de mensagens
-│   ├── 💚 healthCheck.js       # Monitoramento
-│   └── 🧠 autoMemoryManager.js # Gerenciamento de memória
-└── 🔐 .env                     # Variáveis de ambiente
-```
-
-### 🔄 **Fluxo de Mensagens**
-
-```mermaid
-graph TD
-    A[📱 Mensagem WhatsApp] --> B{🔍 Tipo de Mensagem}
-    B -->|Comando /| C[🎯 Command Handler]
-    B -->|Conversa Ativa| D[💬 Conversation Handler]
-    B -->|Mensagem Normal| E[🤖 Passive Handler]
-    
-    C --> F[⚡ Cache Check]
-    F -->|Hit| G[📤 Resposta Rápida]
-    F -->|Miss| H[🔥 Firebase Query]
-    H --> I[🔄 Retry System]
-    I --> J[💾 Cache Store]
-    J --> G
-    
-    D --> K[⏰ Timeout Check]
-    K -->|Válido| L[📝 Process Step]
-    K -->|Expirado| M[❌ Cancel Session]
-```
+### Utilitários
+* **[Axios](https://axios-http.com/)**: Para requisições HTTP (envio de QR Code para Discord).
+* **[dotenv](https://www.npmjs.com/package/dotenv)**: Gerenciamento de variáveis de ambiente.
+* **[pino](https://getpino.io/)** e **[pino-pretty](https://www.npmjs.com/package/pino-pretty)**: Sistema de logging estruturado e formatado.
+* **[qrcode](https://github.com/soldair/node-qrcode)**: Geração de QR Code de autenticação.
+* **[string-similarity](https://www.npmjs.com/package/string-similarity)**: Busca e desambiguação de nomes de jogadores.
 
 ---
 
-## 🚀 Melhorias de Performance Implementadas
+## ⚙️ Configuração do Projeto
 
-### ⚡ **Sistema de Cache Avançado**
-- **🎯 Cache Inteligente:** TTL configurável por tipo de dado
-- **🧹 Invalidação Automática:** Limpeza baseada em eventos
-- **📊 Estatísticas:** Hit rate de 95%+ em operações frequentes
-- **💾 Otimização de Memória:** Cleanup automático baseado no uso
+Para rodar este projeto, você precisará ter algumas coisas instaladas e configuradas.
 
-```javascript
-// Exemplo de uso do cache
-const cachedRanking = CacheHelpers.ranking.get();
-if (cachedRanking) {
-    return reply(cachedRanking); // Resposta instantânea
-}
-```
+### Pré-requisitos
 
-### 🔄 **Retry com Backoff Exponencial**
-- **⏱️ Delays Inteligentes:** 1s → 2s → 4s com jitter
-- **🎯 Detecção de Erros:** Identifica erros retryable vs não-retryable
-- **📈 Taxa de Sucesso:** Redução de 90% em falhas (2-5% → <0.5%)
-- **🛡️ Proteção:** Evita sobrecarga em serviços instáveis
+* [Node.js](https://nodejs.org/) (versão 20 ou superior)
+* [Git](https://git-scm.com/)
+* Um webhook de um canal do Discord
+* Uma conta Firebase com Firestore configurado e uma chave de conta de serviço
 
-### 🛡️ **Circuit Breaker**
-- **🔴 Estados:** CLOSED (normal) → OPEN (bloqueado) → HALF_OPEN (testando)
-- **⚡ Fast-Fail:** Falha rápido quando serviço está down
-- **🔄 Recuperação:** Testa automaticamente se serviço voltou
-- **📊 Threshold:** 5 falhas consecutivas para abrir
+### Instalação
 
-### 📨 **Message Throttling**
-- **⏱️ Rate Limiting:** 20 mensagens/minuto para evitar ban
-- **🎯 Prioridades:** HIGH (comandos) → MEDIUM (notificações) → LOW (lembretes)
-- **📊 Fila Inteligente:** Processamento assíncrono em background
-- **📈 Estatísticas:** Monitoramento de tempo de espera
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/brunosillvax/bot-recruta-whatsapp.git
+    ```
+2.  **Acesse a pasta do projeto:**
+    ```bash
+    cd bot-recruta-whatsapp
+    ```
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+4.  **Configure as variáveis de ambiente:**
+    Crie um arquivo na raiz do projeto chamado `.env` e preencha-o com as variáveis de ambiente necessárias. Utilize o `config.js` para ver todos os valores padrão e quais variáveis podem ser configuradas.
 
-### 💚 **Health Check**
-- **🔍 Verificações:** Firebase, WhatsApp, memória a cada 5 minutos
-- **📱 Alertas Discord:** Notificações automáticas de problemas
-- **📊 Histórico:** Últimos 10 checks para análise de tendências
-- **⚡ Detecção Proativa:** Identifica problemas antes que usuários notem
+    **Exemplo de `.env`:**
+    ```
+    # Nível de log para o bot (info, debug, warn, error)
+    LOG_LEVEL=info
 
-### 🧠 **Auto Memory Manager**
-- **🧹 Limpeza Automática:** Remove dados desnecessários
-- **📊 Monitoramento:** Acompanha uso de heap em tempo real
-- **⚡ Otimização:** Limpeza progressiva baseada no uso de memória
-- **🔄 Manutenção:** Evita vazamentos de memória
+    # ID do grupo do WhatsApp onde o bot vai operar
+    ALLOWED_GROUP_ID="120363420675199775@g.us"
 
-### 👋 **Graceful Shutdown**
-- **🛑 Parada Ordenada:** Para de aceitar mensagens
-- **🧹 Limpeza:** Remove timeouts e estados de usuário
-- **📱 Notificação:** Avisa no Discord sobre desligamento
-- **💾 Persistência:** Salva dados antes de sair
+    # URL do Webhook do Discord para enviar o QR Code
+    DISCORD_WEBHOOK_URL="SUA_URL_DO_WEBHOOK_AQUI"
 
----
+    # Tolerância para busca de nomes de jogadores (distância de Levenshtein)
+    SEARCH_TOLERANCE=3
 
-## 📈 Análise de Escalabilidade
+    # Tempo em minutos para uma sessão de conversa expirar
+    SESSION_TIMEOUT_MINUTES=5
 
-### 🎯 **Capacidade Atual**
-- **👥 Usuários Suportados:** 200-300 membros ativos
-- **⚡ Performance:** Queries cacheadas em <1ms (vs 50-200ms Firebase)
-- **💾 Memória:** ~1KB por jogador cacheado
-- **📊 Taxa de Sucesso:** 99.5% em operações críticas
+    # JID do líder para menções em alertas de advertência
+    LEADER_JID="5527996419901@s.whatsapp.net"
 
-### 📊 **Métricas de Performance**
+    # Credenciais do Firebase Service Account (JSON da chave de serviço codificado em Base64)
+    # Para obter, faça o download do JSON da chave de serviço do Firebase (seu-projeto-firebase-adminsdk-xxxxx.json).
+    # Em seguida, converta o conteúdo deste arquivo para Base64 (ex: cat sua-chave-admin.json | base64).
+    FIREBASE_SERVICE_ACCOUNT_BASE64="SEU_JSON_DE_SERVICO_FIREBASE_CODIFICADO_EM_BASE64_AQUI"
 
-| Métrica | Antes | Depois | Melhoria |
-|---------|------|--------|----------|
-| **Latência Média** | 50-200ms | <1ms | 200x mais rápido |
-| **Taxa de Falha** | 2-5% | <0.5% | 90% redução |
-| **Chamadas Firebase** | 100% | 30% | 70% redução |
-| **Hit Rate Cache** | 0% | 95%+ | Novo recurso |
+    # Configurações de Lembretes Automáticos
+    AUTO_REMINDER_ENABLED=true
+    TIMEZONE=America/Sao_Paulo
+    REMINDER_SCHEDULE_QUINTA="0 21 * * 4"
+    REMINDER_SCHEDULE_SEXTA="0 21 * * 5"
+    REMINDER_SCHEDULE_SABADO="0 21 * * 6"
+    REMINDER_SCHEDULE_DOMINGO="0 20 * * 0"
 
-### 🚀 **Recomendações para Escala**
+    # Configurações de Divisões do Ranking
+    RANKING_ELITE_MIN_POINTS=3000
+    RANKING_HIGH_PERFORMANCE_MIN_POINTS=2500
+    RANKING_ON_TRACK_MIN_POINTS=2000
+    RANKING_ATTENTION_ZONE_MIN_POINTS=0
 
-#### **Para 300-500 membros:**
-- ✅ **Cache Redis:** Compartilhar cache entre instâncias
-- ✅ **Múltiplas Instâncias:** Load balancing
-- ✅ **Monitoramento:** Prometheus + Grafana
+    # Configurações de Performance (Opcional - valores padrão já configurados)
+    RETRY_ENABLED=true
+    RETRY_MAX_ATTEMPTS=3
+    RETRY_INITIAL_DELAY_MS=1000
+    RETRY_MAX_DELAY_MS=10000
+    CACHE_ENABLED=true
+    CIRCUIT_BREAKER_ENABLED=true
+    CIRCUIT_BREAKER_FAILURE_THRESHOLD=5
+    CIRCUIT_BREAKER_TIMEOUT_MS=60000
+    MESSAGE_THROTTLING_ENABLED=true
+    MESSAGE_RATE_LIMIT_PER_MINUTE=20
+    HEALTH_CHECK_ENABLED=true
+    HEALTH_CHECK_INTERVAL_MS=300000
+    ```
 
-#### **Para 500+ membros:**
-- 🔄 **Database Sharding:** Dividir jogadores em collections
-- 📊 **Filas Externas:** BullMQ para processamento paralelo
-- 🏗️ **Microserviços:** Separar funcionalidades
+    **Importante:** Nunca commite seu arquivo `.env` para o controle de versão! Adicione-o ao seu `.gitignore`.
 
----
+### Executando o Bot
 
-## ⚙️ Guia de Instalação e Configuração
-
-### 📋 **Pré-requisitos**
-
-- **Node.js** 18.x ou superior
-- **Git** para clonagem
-- **Conta Firebase** com Firestore configurado
-- **Webhook Discord** para notificações
-- **Chave de Serviço Firebase** (JSON)
-
-### 🚀 **Instalação Passo a Passo**
-
-#### **1. Clone o Repositório**
-```bash
-git clone https://github.com/brunosillvax/bot-recruta-whatsapp-atual.git
-cd bot-recruta-whatsapp-atual
-```
-
-#### **2. Instale as Dependências**
-```bash
-npm install
-```
-
-#### **3. Configure as Variáveis de Ambiente**
-```bash
-cp .env.example .env
-nano .env
-```
-
-#### **4. Configure o Firebase**
-```bash
-# Opção 1: Arquivo local (desenvolvimento)
-# Coloque seu chave-admin.json na raiz do projeto
-
-# Opção 2: Base64 (produção - RECOMENDADO)
-# Converta seu JSON para Base64:
-cat chave-admin.json | base64
-# Cole o resultado em FIREBASE_SERVICE_ACCOUNT_BASE64
-```
-
-#### **5. Execute o Bot**
-```bash
-npm start
-```
-
-### 🔧 **Configuração do .env**
-
-```env
-# 🤖 Configurações Básicas
-LOG_LEVEL=info
-ALLOWED_GROUP_ID="120363420675199775@g.us"
-DISCORD_WEBHOOK_URL="https://discordapp.com/api/webhooks/..."
-
-# 🔐 Firebase (ESCOLHA UMA OPÇÃO)
-# Opção 1: Base64 (RECOMENDADO para produção)
-FIREBASE_SERVICE_ACCOUNT_BASE64="eyJ0eXBlIjoic2VydmljZV9hY2NvdW50..."
-
-# Opção 2: Arquivo local (desenvolvimento)
-# Deixe vazio para usar chave-admin.json
-
-# ⚙️ Performance e Confiabilidade
-RETRY_ENABLED=true
-CACHE_ENABLED=true
-CIRCUIT_BREAKER_ENABLED=true
-MESSAGE_THROTTLING_ENABLED=true
-HEALTH_CHECK_ENABLED=true
-
-# 📊 Parâmetros de Performance
-RETRY_MAX_ATTEMPTS=3
-CIRCUIT_BREAKER_FAILURE_THRESHOLD=5
-MESSAGE_RATE_LIMIT_PER_MINUTE=20
-HEALTH_CHECK_INTERVAL_MS=300000
-
-# 🏆 Divisões do Ranking
-RANKING_ELITE_MIN_POINTS=3000
-RANKING_HIGH_PERFORMANCE_MIN_POINTS=2500
-RANKING_ON_TRACK_MIN_POINTS=2000
-RANKING_ATTENTION_ZONE_MIN_POINTS=0
-```
-
-### 🚀 **Deploy em Produção**
-
-#### **DisCloud (Recomendado)**
-1. **📤 Upload:** Faça upload dos arquivos
-2. **⚙️ Configuração:** Configure as variáveis de ambiente
-3. **🚀 Start:** Inicie a aplicação
-
-#### **SquareCloud**
-1. **📦 Package:** Crie um ZIP do projeto
-2. **🔧 Config:** Configure as variáveis
-3. **▶️ Deploy:** Faça o deploy
+1.  **Inicie o bot:**
+    ```bash
+    npm start
+    ```
+2.  **Escaneie o QR Code:**
+    Ao iniciar pela primeira vez, um QR Code será enviado para o seu canal do Discord. Abra o WhatsApp no seu celular, vá em `Aparelhos conectados` e escaneie o código.
 
 ---
 
 ## 📚 Como Usar
 
-### 👤 **Comandos para Usuários**
+Depois de conectado, o bot responderá aos comandos no grupo permitido. Os comandos marcados com 👑 são apenas para administradores.
 
-| Comando | Emoji | Descrição | Exemplo |
-|---------|-------|-----------|---------|
-| `/me` | 👤 | Status pessoal e advertências | `/me` |
-| `/nome [nick]` | 📝 | Registra nick no jogo | `/nome 《☆》Fulano` |
-| `/edit [novo_nick]` | ✏️ | Altera próprio nick | `/edit 《☆》NovoNome` |
-| `/save [nick] [pontos]` | 💾 | Salva preset para `!!!` | `/save 《☆》Fulano 10428` |
-| `!!!` | ⚡ | Atalho para pontos salvos | `!!!` |
-| `/lista` | 📝 | Fluxo interativo de pontos | `/lista` |
-| `/status` | 📊 | Placar da semana | `/status` |
-| `/ranking` | 🏆 | Ranking por divisões | `/ranking` |
-| `/campeoes` | 👑 | Hall da Fama | `/campeoes` |
-| `/lembrete [dia]` | 📋 | Quem não pontuou | `/lembrete quinta` |
-| `/adv` | ⚠️ | Lista advertências | `/adv` |
-| `/sair` | ❌ | Cancela operação | `/sair` |
+### Comandos para Todos
 
-### 🎯 **Comandos Rápidos de Pontos**
+*   **`/me`** - Vê o seu status pessoal, pontuação na guerra e advertências.
+*   **`/nome [seu_nick]`** - Registra seu nick no jogo na lista do bot.
+*   **`/edit [seu_novo_nick]`** - Altera o seu próprio nick registrado.
+*   **`/save [seu nick] [seus pontos navais]`** - Salva seu nick e pontos navais padrão para uso com o atalho `!!!`. Ex: `/save 《☆》ᴿᶻ Fulano 10428`.
+*   **`!!!`** - Atalho para lançar seus pontos navais padrão na guerra. Se um preset estiver salvo, ele registrará automaticamente seus pontos; caso contrário, iniciará um fluxo de conversa para você salvar seu preset. Também registrará seu jogador automaticamente se você ainda não estiver na lista do bot.
+*   **`/lista`** - Inicia um fluxo de conversa interativo para lançar seus pontos de Guerra ou Defesa Naval.
+*   **`/status`** - Vê o placar da semana de guerra de todos os jogadores.
+*   **`/ranking`** - Exibe o ranking geral de pontos de guerra, dividido por categorias.
+*   **`/campeoes`** - Mostra o Hall da Fama dos maiores campeões.
+*   **`/lembrete [dia|naval]`** - Vê quem ainda não pontuou na guerra (`/lembrete quinta`, `/lembrete sexta`, etc.) ou na Defesa Naval (`/lembrete naval`).
+*   **`/adv`** - Lista todos os jogadores com advertências.
+*   **`/sair`** ou **`/cancelar`** - Cancela qualquer operação de conversa em andamento.
 
-| Comando | Descrição | Exemplo |
-|---------|-----------|---------|
-| `/[pontos] [dia]` | Lança pontos para dia específico | `/980 quinta` |
-| `/[pontos]` | Lança pontos para dia atual | `/980` |
-| `/[nome] [pontos] [dia]` | 👑 Lança para outro jogador | `/Mestre Yoda 980 sexta` |
-| `/[nome] [pontos]` | 👑 Lança para outro (dia atual) | `/Mestre Yoda 980` |
+### Comandos Rápidos de Lançamento de Pontos
 
-### 👑 **Comandos de Administrador**
+*   **`/[pontos] [dia]`** - Lança pontos de guerra diretamente.
+    *   *Exemplo:* `/980 quinta`
+*   **`/[pontos]`** - Lança pontos de guerra para o dia atual (se for um dia de guerra válido).
+    *   *Exemplo:* `/980`
+*   **`/[nome_do_jogador] [pontos] [dia]`** - (👑 Admin) Lança pontos para outro jogador.
+    *   *Exemplo:* `/Mestre Yoda 980 sexta`
+*   **`/[nome_do_jogador] [pontos]`** - (👑 Admin) Lança pontos para outro jogador para o dia atual.
+    *   *Exemplo:* `/Mestre Yoda 980`
 
-| Comando | Emoji | Descrição | Exemplo |
-|---------|-------|-----------|---------|
-| `/edit [antigo] para [novo]` | ✏️ | Altera nome de outro jogador | `/edit Antigo para Novo` |
-| `/punir [nome]` | ⚠️ | Aplica advertência | `/punir Mestre Yoda` |
-| `/remover [nome]` | 🗑️ | Remove jogador | `/remover Darth Vader` |
-| `/verificar` | 🔍 | Sincroniza grupo e bot | `/verificar` |
-| `/resetar_advs` | 🔄 | Zera todas advertências | `/resetar_advs` |
-| `/nova_guerra` | 🏆 | Calcula campeão e zera pontos | `/nova_guerra` |
-| `/restaurar_backup` | 💾 | Restaura backup | `/restaurar_backup` |
+### Comandos de Administrador (👑)
 
-### 🔄 **Fluxos de Conversa**
-
-#### **📝 Cadastro de Novo Jogador**
-```
-1. 👋 Boas-vindas automáticas
-2. 📝 Nome no jogo
-3. 🎮 Nível XP
-4. 👑 Torre Rei
-5. 🏆 Troféus
-6. ⚓ Defesa Naval
-7. ✅ Confirmação
-```
-
-#### **📊 Lançamento de Pontos**
-```
-1. 🎯 Escolha do evento (Guerra/Defesa Naval/Torre/Troféus/XP)
-2. 📝 Digite os pontos
-3. 📅 Confirma dia (se aplicável)
-4. ✅ Confirmação final
-```
+*   **`/edit [nome_antigo] para [novo_nome]`** - Altera o nome de outro jogador na lista.
+    *   *Exemplo:* `/edit AntigoNick para NovoNick`
+*   **`/punir [nome_do_jogador]`** - Aplica uma advertência a um jogador. Com 5 advertências, o jogador é removido da lista e do grupo.
+    *   *Exemplo:* `/punir Mestre Yoda`
+*   **`/remover [nome_do_jogador]`** - Remove um jogador da lista do bot e de todos os grupos do WhatsApp onde o bot é administrador.
+    *   *Exemplo:* `/remover Darth Vader`
+*   **`/verificar`** - Verifica membros do grupo que não estão registrados no bot e jogadores registrados que não estão mais no grupo.
+*   **`/resetar_advs`** - Zera todas as advertências de todos os jogadores.
+*   **`/nova_guerra`** - Calcula o campeão da semana, aplica as faltas e zera todos os pontos de guerra e defesa naval para iniciar uma nova semana.
+*   **`/restaurar_backup`** - Restaura a lista de jogadores a partir do último backup automático.
 
 ---
 
-## 📊 Monitoramento e Estatísticas
+## 🚀 Hospedagem (Deploy)
 
-### 📈 **Verificar Status do Cache**
-```javascript
-const { cache } = require('./utils/cacheManager');
-console.log(cache.getStats());
-```
+Este bot foi testado e otimizado para hospedagem nas plataformas **[DisCloud](https://dis.gd)** e **[Squarecloud](https://squarecloud.app/)**.
 
-**Output:**
-```json
-{
-  "hits": 150,
-  "misses": 50,
-  "hitRate": "75.00%",
-  "size": 45,
-  "totalRequests": 200
-}
-```
+### Passos para Deploy
 
-### 🛡️ **Verificar Circuit Breaker**
-```javascript
-const { firebaseCircuitBreaker } = require('./utils/circuitBreaker');
-console.log(firebaseCircuitBreaker.getStats());
-```
+1. **Configure o ambiente de produção:**
+   - Certifique-se de que seu arquivo `.env` esteja configurado corretamente
+   - Use `FIREBASE_SERVICE_ACCOUNT_BASE64` ao invés de arquivo local para maior segurança
 
-### 📨 **Verificar Fila de Mensagens**
-```javascript
-const { throttler } = require('./utils/messageThrottler');
-console.log(throttler.getStats());
-```
+2. **Faça upload para o GitHub:**
+   ```bash
+   git add .
+   git commit -m "Preparando para deploy"
+   git push origin main
+   ```
 
-### 💚 **Verificar Health Status**
-```javascript
-const { healthCheck } = require('./utils/healthCheck');
-console.log(healthCheck.getHealth());
-```
+3. **Conecte ao serviço de hospedagem:**
+   - Conecte seu repositório do GitHub à DisCloud ou Squarecloud
+   - Configure as variáveis de ambiente na plataforma
+   - Inicie a aplicação
 
-### 📝 **Logs e Debugging**
+### Arquivos de Configuração
 
-#### **Níveis de Log**
-- **🔍 DEBUG:** Informações detalhadas para desenvolvimento
-- **ℹ️ INFO:** Informações gerais de funcionamento
-- **⚠️ WARN:** Avisos sobre situações anômalas
-- **❌ ERROR:** Erros que não impedem funcionamento
-- **🚨 FATAL:** Erros críticos que param o bot
+O projeto inclui arquivos de configuração prontos:
+- `discloud.config` - Configuração para DisCloud
+- `squarecloud.config` - Configuração para Squarecloud
 
-#### **Estrutura dos Logs**
-```json
-{
-  "level": "info",
-  "time": "2024-01-15T10:30:00.000Z",
-  "msg": "Cache HIT: ranking:current",
-  "operation": "ranking",
-  "userId": "5527996419901@s.whatsapp.net"
-}
-```
+## 📊 Performance e Confiabilidade
+
+Este bot implementa várias melhorias de performance e confiabilidade:
+
+### ✅ Melhorias Implementadas
+
+- **Sistema de Cache:** Reduz latência em até 70% e carga no Firebase
+- **Retry Automático:** Recuperação automática de falhas transitórias
+- **Circuit Breaker:** Proteção contra falhas em cascata
+- **Message Throttling:** Previne bloqueios do WhatsApp por spam
+- **Health Check:** Monitoramento proativo com alertas automáticos
+- **Graceful Shutdown:** Desligamento limpo sem perda de dados
+
+### 📈 Métricas de Performance
+
+- **Taxa de sucesso:** >99.5% em operações críticas
+- **Latência média:** 50-150ms (com cache)
+- **Redução de chamadas Firebase:** ~70% através de cache
+- **Recuperação automática:** <1min após falhas transitórias
+
+Para mais detalhes, consulte:
+- [MELHORIAS_IMPLEMENTADAS.md](./MELHORIAS_IMPLEMENTADAS.md) - Detalhes das melhorias
+- [ANALISE_TECNICA.md](./ANALISE_TECNICA.md) - Análise de escalabilidade e manutenibilidade
+- [OTIMIZACOES_PERFORMANCE.md](./OTIMIZACOES_PERFORMANCE.md) - Otimizações adicionais
 
 ---
 
-## 🔒 Segurança e Boas Práticas
+## 🤝 Contribuições
 
-### ⚠️ **IMPORTANTE: Credenciais**
+Contribuições são o que tornam a comunidade de código aberto um lugar incrível para aprender, inspirar e criar. Qualquer contribuição que você fizer será **muito apreciada**.
 
-> **🚨 NUNCA commite arquivos com credenciais!**
-
-#### **✅ Faça:**
-- Use `FIREBASE_SERVICE_ACCOUNT_BASE64` no `.env`
-- Adicione `.env` ao `.gitignore`
-- Use variáveis de ambiente em produção
-
-#### **❌ NÃO Faça:**
-- Commitar `chave-admin.json`
-- Hardcodar credenciais no código
-- Expor tokens em logs
-
-### 🛡️ **Configurações de Segurança**
-
-```env
-# 🔐 Configurações Seguras
-FIREBASE_SERVICE_ACCOUNT_BASE64="sua_chave_base64_aqui"
-DISCORD_WEBHOOK_URL="seu_webhook_aqui"
-ALLOWED_GROUP_ID="seu_grupo_id_aqui"
-
-# ⚠️ NUNCA commite estas variáveis:
-# - FIREBASE_SERVICE_ACCOUNT_BASE64
-# - DISCORD_WEBHOOK_URL
-# - Qualquer token ou chave
-```
-
-### 📁 **Arquivo .gitignore Recomendado**
-```gitignore
-# 🔐 Credenciais
-.env
-chave-admin.json
-*.json
-
-# 📦 Dependências
-node_modules/
-npm-debug.log*
-
-# 🗂️ Logs
-logs/
-*.log
-
-# 💾 Cache
-auth_info_baileys/
-```
-
----
-
-## 🤝 Contribuição
-
-### 🚀 **Como Contribuir**
-
-1. **🍴 Fork** o projeto
-2. **🌿 Crie** uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. **💾 Commit** suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. **📤 Push** para a branch (`git push origin feature/AmazingFeature`)
-5. **🔀 Abra** um Pull Request
-
-### 📋 **Diretrizes de Contribuição**
-
-- **✅ Teste** suas mudanças localmente
-- **📝 Documente** novas funcionalidades
-- **🎯 Mantenha** compatibilidade com versões anteriores
-- **🔒 Não** commite credenciais ou dados sensíveis
-- **📊 Adicione** logs apropriados para debugging
-
-### 🐛 **Reportar Bugs**
-
-1. **🔍 Verifique** se o bug já foi reportado
-2. **📝 Crie** uma issue detalhada
-3. **📊 Inclua** logs relevantes
-4. **🔄 Descreva** passos para reproduzir
+1.  Faça um Fork do projeto
+2.  Crie uma Branch para sua Feature (`git checkout -b feature/AmazingFeature`)
+3.  Faça o Commit de suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4.  Faça o Push para a Branch (`git push origin feature/AmazingFeature`)
+5.  Abra um Pull Request
 
 ---
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a **Licença MIT** - veja o arquivo [LICENSE](LICENSE) para detalhes.
-
-```
-MIT License
-
-Copyright (c) 2024 RECRUTA ZERO《☆》
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-```
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ---
 
-## 👤 Contato e Suporte
+## 👤 Contato
 
-### 🏆 **Desenvolvido para o Clã RECRUTA ZERO《☆》**
+Desenvolvido com ❤️ para o clã RECRUTA ZERO《☆》
 
-- **📧 Contato:** [GitHub Issues](https://github.com/brunosillvax/bot-recruta-whatsapp/issues)
-- **🔗 Repositório:** [GitHub](https://github.com/brunosillvax/bot-recruta-whatsapp)
-- **📱 WhatsApp:** Clã RECRUTA ZERO《☆》
+Link do Projeto: [https://github.com/brunosillvax/bot-recruta-whatsapp](https://github.com/brunosillvax/bot-recruta-whatsapp)
 
-### 🆘 **Suporte Técnico**
+---
 
-#### **Problemas Comuns:**
+## 📚 Documentação Adicional
 
-1. **❌ Bot não conecta:**
-   - Verifique se o QR Code foi escaneado
-   - Confirme se as credenciais Firebase estão corretas
+- **[MELHORIAS_IMPLEMENTADAS.md](./MELHORIAS_IMPLEMENTADAS.md)** - Detalhes completos das melhorias de performance e confiabilidade
+- **[ANALISE_TECNICA.md](./ANALISE_TECNICA.md)** - Análise profunda de escalabilidade e manutenibilidade
+- **[OTIMIZACOES_PERFORMANCE.md](./OTIMIZACOES_PERFORMANCE.md)** - Otimizações adicionais recomendadas
 
-2. **⚠️ Comandos não funcionam:**
-   - Verifique se está no grupo correto
-   - Confirme se o bot tem permissões de administrador
+---
 
-3. **💾 Cache não funciona:**
-   - Verifique se `CACHE_ENABLED=true` no `.env`
-   - Monitore logs para erros de cache
+## 🛠️ Estrutura do Projeto
 
-4. **📱 Mensagens não chegam:**
-   - Verifique rate limiting
-   - Confirme se o bot não foi banido
-
-#### **🔧 Debugging:**
-
-```bash
-# Verificar logs em tempo real
-npm start
-
-# Verificar configurações
-node -e "console.log(require('./config'))"
-
-# Testar conexão Firebase
-node -e "require('./config').db.collection('test').get().then(() => console.log('✅ Firebase OK')).catch(console.error)"
+```
+bot-recruta-whatsapp/
+├── commands/              # Comandos do bot
+│   ├── admin.js          # Comandos administrativos
+│   ├── lista.js          # Sistema de registro de pontos
+│   ├── ranking.js        # Sistema de ranking
+│   └── ...
+├── utils/                # Utilitários e helpers
+│   ├── cacheManager.js   # Gerenciador de cache
+│   ├── retryHelper.js    # Sistema de retry
+│   ├── circuitBreaker.js # Circuit breaker
+│   ├── healthCheck.js    # Health checks
+│   └── ...
+├── index.js              # Arquivo principal
+├── config.js             # Configurações centralizadas
+├── commandHandler.js     # Handler de comandos
+├── conversationHandler.js # Handler de conversas
+└── package.json          # Dependências do projeto
 ```
 
 ---
 
-## 🎉 **Aproveite o Bot!**
-
-> **💡 Dica:** Para melhor performance, mantenha o cache habilitado e monitore as estatísticas regularmente.
-
-**Status:** ✅ **Produção-Ready** - Bot otimizado e pronto para uso em produção!
-
----
-
-<div align="center">
-
-**🤖 Desenvolvido com ❤️ para o clã RECRUTA ZERO《☆》**
-
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/brunosillvax/bot-recruta-whatsapp-atual)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-
-</div>
+**Versão:** 1.0.0  
+**Última atualização:** 2025
